@@ -1,0 +1,8 @@
+<div *ngIf="games" class="games-container">
+  <div *ngFor="let game of games" class="game-item">
+    <img src="{{ game.image }}">
+    <div class="play-button-container">
+      <button mat-raised-button>Play {{ game.name }}</button>
+    </div>
+  </div>
+</div>
