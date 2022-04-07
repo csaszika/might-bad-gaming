@@ -1,0 +1,26 @@
+@import "src/styles";
+
+mat-toolbar.mat-accent {
+  display: flex;
+  justify-content: space-around;
+
+  background-color: $accent;
+  color: $secondary;
+
+  .toolbar-category {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  .toolbar-category.selected {
+    background-color: $primary;
+  }
+}
+
+.main-container {
+  height: 91%;
+}
