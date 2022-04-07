@@ -1,0 +1,16 @@
+<ng-container *ngIf="gamesError$ | async; else okay">
+  Error...
+</ng-container>
+
+<ng-template #okay>
+
+  <ng-container *ngIf="gamesLoading$ | async; else data">
+    Loading...
+  </ng-container>
+
+  <ng-template #data>
+    <app-game-cards [games]="(gamesByCategory$ | async)!"></app-game-cards>
+  </ng-template>
+
+</ng-template>
+
