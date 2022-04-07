@@ -25,7 +25,7 @@ export class GamesContainerComponent implements OnInit {
   gamesLoading$ = this.store.pipe(select(selectGamesLoading));
   gamesError$ = this.store.pipe(select(selectGamesError));
   selectedCategory$ = this.store.pipe(select(selectFilterCategory));
-  jackpots$ = this.store.pipe(select(selectJackpots));
+  // jackpots$ = this.store.pipe(select(selectJackpots));
 
   constructor(private readonly store: Store<any>,
               private readonly activatedRoute: ActivatedRoute) {}

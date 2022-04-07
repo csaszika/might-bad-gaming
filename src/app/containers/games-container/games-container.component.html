@@ -1,11 +1,11 @@
 <ng-container *ngIf="gamesError$ | async; else okay">
-  Error...
+  <span>Error...</span>
 </ng-container>
 
 <ng-template #okay>
 
   <ng-container *ngIf="gamesLoading$ | async; else data">
-    Loading...
+    <span>Loading...</span>
   </ng-container>
 
   <ng-template #data>
