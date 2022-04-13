@@ -1,18 +1,15 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
-import {ActivatedRoute} from '@angular/router';
-import {getGames, selectGameCategories} from '../../store/games/actions';
 import {
   selectFilterCategory,
   selectGamesByCategory,
   selectGamesError,
   selectGamesLoading
 } from '../../store/games/selectors';
-import {startPollingJackpots} from '../../store/jackpots/actions';
-import {delay, skip} from 'rxjs';
 import {selectGamesWithJackpots} from '../../store/integration-selectors/games-with-jackpots.selectors';
 import {selectJackpots} from '../../store/jackpots/selectors';
-import {Routes} from '../../types/routes';
+import {ActivatedRoute} from '@angular/router';
+import {selectGameCategory} from '../../store/games/actions';
 
 @Component({
   selector: 'app-games-container',
@@ -30,19 +27,11 @@ export class GamesContainerComponent implements OnInit {
   gamesWithJackpots$ = this.store.pipe(select(selectGamesWithJackpots));
   jackpots$ = this.store.pipe(select(selectJackpots));
 
-  isJackpotRoute = false;
-
   constructor(private readonly store: Store<any>,
               private readonly activatedRoute: ActivatedRoute) {}
 
-  ngOnInit(): void {
-    this.store.dispatch(getGames());
-    this.store.dispatch(startPollingJackpots());
-
-    this.activatedRoute.params.pipe(delay(1)).subscribe((param) => {
-      this.isJackpotRoute = param['category'] === Routes.JACKPOTS;
-      this.store.dispatch(selectGameCategories({ category: param['category']}));
-    })
+  ngOnInit() {
+    this.store.dispatch(selectGameCategory({ category: this.activatedRoute.snapshot.params['category'] }))
   }
 
 }

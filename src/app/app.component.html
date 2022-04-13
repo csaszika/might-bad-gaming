@@ -1,7 +1,7 @@
 <mat-toolbar color="accent">
   <span class="toolbar-category"
         *ngFor="let category of categories"
-        [ngClass]="{'selected': (selectedCategory$ | async) === category }"
+        [ngClass]="{'selected': selectedCategory === category }"
         (click)="onCategoryClick(category)">
     {{ category | titlecase }}
   </span>

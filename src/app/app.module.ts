@@ -14,12 +14,14 @@ import {HttpClientModule} from '@angular/common/http';
 import {JackpotsEffects} from './store/jackpots/effects';
 import {MatButtonModule} from '@angular/material/button';
 import { GameCardsComponent } from './components/game-cards/game-cards.component';
+import { JackpotGamesContainerComponent } from './containers/jackpot-games-container/jackpot-games-container.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GamesContainerComponent,
     GameCardsComponent,
+    JackpotGamesContainerComponent,
   ],
   imports: [
     BrowserModule,

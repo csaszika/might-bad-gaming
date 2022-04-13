@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import {getGames, loadGames, loadGamesFailed, selectGameCategories} from './actions';
+import {getGames, loadGames, loadGamesFailed, selectGameCategory} from './actions';
 import {Game} from '../../types';
 import {Category} from '../../types/category';
 
@@ -26,7 +26,7 @@ export const gamesReducer = createReducer(
     games: [...games],
   })),
   on(loadGamesFailed, state => ({ ...state, games: [], loading: false, error: true })),
-  on(selectGameCategories, (state: GamesState, { category }) => ({
+  on(selectGameCategory, (state: GamesState, { category }) => ({
     ...state,
     filterCategory: category,
   })),

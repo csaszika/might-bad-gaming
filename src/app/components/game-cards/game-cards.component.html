@@ -4,6 +4,7 @@
     <div class="play-button-container">
       <button mat-raised-button>Play {{ game.name }}</button>
     </div>
+    <!-- Here we could use a pipe if having performance issues -->
     <span *ngIf="!!jackpots[game.id]">{{ jackpots[game.id] }}</span>
   </div>
 </div>
