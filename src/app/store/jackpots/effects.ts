@@ -1,12 +1,20 @@
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
-import {catchError, map, of, switchMap} from 'rxjs';
+import {catchError, interval, map, mapTo, of, switchMap} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
-import {getJackpots, loadJackpots, loadJackpotsFailed} from './actions';
+import {getJackpots, loadJackpots, loadJackpotsFailed, startPollingJackpots} from './actions';
 import {Jackpot} from '../../types';
 
 @Injectable()
 export class JackpotsEffects {
+
+  pollingJackpotsStart$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(startPollingJackpots),
+      switchMap(() => interval(3000).pipe(map(getJackpots)))
+    )
+  )
+
   loadJackpots$ = createEffect(() =>
     this.actions$.pipe(
       ofType(getJackpots),

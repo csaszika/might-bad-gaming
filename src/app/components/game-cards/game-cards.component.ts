@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
-import {Game} from '../../types';
+import {Game, GameId, Jackpots} from '../../types';
 
 @Component({
   selector: 'app-game-cards',
@@ -10,5 +10,10 @@ import {Game} from '../../types';
 export class GameCardsComponent {
 
   @Input() games: Game[] = [];
+  @Input() jackpots: Jackpots = {};
+
+  gameTrackBy(index: number, game: Game): GameId {
+    return game.id;
+  }
 
 }

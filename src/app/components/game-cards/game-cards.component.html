@@ -1,8 +1,9 @@
 <div *ngIf="games" class="games-container">
-  <div *ngFor="let game of games" class="game-item">
-    <img src="{{ game.image }}">
+  <div *ngFor="let game of games; trackBy: gameTrackBy" class="game-item">
+    <img src="{{ game.image }}" loading="lazy">
     <div class="play-button-container">
       <button mat-raised-button>Play {{ game.name }}</button>
     </div>
+    <span *ngIf="!!jackpots[game.id]">{{ jackpots[game.id] }}</span>
   </div>
 </div>

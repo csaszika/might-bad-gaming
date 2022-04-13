@@ -9,7 +9,8 @@
   </ng-container>
 
   <ng-template #data>
-    <app-game-cards [games]="(gamesByCategory$ | async)!"></app-game-cards>
+    <app-game-cards *ngIf="!isJackpotRoute" [games]="(gamesByCategory$ | async)!"></app-game-cards>
+    <app-game-cards *ngIf="isJackpotRoute" [games]="(gamesWithJackpots$ | async)!" [jackpots]="(jackpots$ | async)!"></app-game-cards>
   </ng-template>
 
 </ng-template>

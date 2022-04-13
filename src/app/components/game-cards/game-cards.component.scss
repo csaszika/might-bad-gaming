@@ -9,6 +9,10 @@
 
   .game-item {
 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     position: relative;
     padding-block-start: 15px;
     padding-block-end: 15px;

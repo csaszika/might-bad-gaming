@@ -1,15 +1,15 @@
-import { Action, createReducer, on } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 import {getJackpots, loadJackpots, loadJackpotsFailed} from './actions';
-import {Jackpot} from '../../types';
+import { Jackpots } from '../../types';
 
 export interface JackpotsState {
-  jackpots: Jackpot[];
+  jackpots: Jackpots;
   loading: boolean;
   error: boolean;
 }
 
 export const initialState: JackpotsState = {
-  jackpots: [],
+  jackpots: {},
   loading: false,
   error: false,
 };
@@ -20,7 +20,7 @@ export const jackpotsReducer = createReducer(
   on(loadJackpots, (state: JackpotsState, { jackpots }) => ({
     ...state,
     loading: false,
-    jackpots: [...jackpots],
+    jackpots: Object.fromEntries(jackpots.map((e) => [e.game, e.amount])),
   })),
-  on(loadJackpotsFailed, state => ({ ...state, jackpots: [], loading: false, error: true })),
+  on(loadJackpotsFailed, state => ({ ...state, jackpots: {}, loading: false, error: true })),
 );
